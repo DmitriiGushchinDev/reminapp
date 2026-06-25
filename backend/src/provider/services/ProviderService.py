@@ -43,13 +43,13 @@ class ProviderService:
         await session.refresh(service)
         return service
     
-    async def update_service(self, service_id: uuid.UUID, service: ServiceUpdate, session: AsyncSession):
+    async def update_service(self, service_id: uuid.UUID, service_new: ServiceUpdate, session: AsyncSession):
         service = await session.get(Service, service_id)
         if not service:
             raise HTTPException(status_code=404, detail="Service not found")
-        service.name = service.name
-        service.duration = service.duration
-        service.price = service.price
+        service.name = service_new.name
+        service.duration = service_new.duration
+        service.price = service_new.price
         service.updated_at = datetime.now()
         await session.commit()
         await session.refresh(service)

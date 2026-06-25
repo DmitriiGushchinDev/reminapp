@@ -25,7 +25,7 @@ const generateRevenueData = (appointments: Appointment[], period: TimePeriod) =>
 
   // Generate mock data for different periods
   const now = new Date();
-  let data: { name: string; revenue: number; appointments: number }[] = [];
+  const data: { name: string; revenue: number; appointments: number }[] = [];
 
   switch (period) {
     case "week":
@@ -55,7 +55,7 @@ const generateRevenueData = (appointments: Appointment[], period: TimePeriod) =>
         });
       }
       break;
-    case "quarter":
+    case "quarter":{
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       for (let i = 11; i >= 0; i--) {
         const date = new Date(now);
@@ -68,6 +68,7 @@ const generateRevenueData = (appointments: Appointment[], period: TimePeriod) =>
         });
       }
       break;
+    }
     case "year":
       for (let i = 4; i >= 0; i--) {
         const year = now.getFullYear() - i;

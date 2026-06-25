@@ -1,5 +1,5 @@
-export const API_BASE_URL = 'https://calendia-remind.onrender.com/api';
-//  'http://localhost:8000/api';
+export const API_BASE_URL = 'http://localhost:8000/api';
+//  'https://calendia-remind.onrender.com/api';
 
 class ApiError extends Error {
   constructor(public status: number, message: string) {
