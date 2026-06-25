@@ -24,7 +24,7 @@ jobs:
         run: pip install poetry
 
       - name: Install Backend Dependencies
-        run: poetry install
+        run: poetry install --no-root
 
       - name: Run Backend Tests
         run: poetry run pytest
