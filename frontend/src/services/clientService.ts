@@ -2,7 +2,19 @@ import { Client } from '@/types';
 import { fetchWithErrorHandling } from './api';
 
 // Transform snake_case response from backend to camelCase for frontend
-const transformClient = (data: any): Client => ({
+interface ClientResponse{
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  notes: string;
+  createdAt?: string;
+  created_at?: string;
+  updated_at?: string;
+  updatedAt?: string;
+}
+
+const transformClient = (data: ClientResponse): Client => ({
   id: data.id,
   name: data.name,
   phone: data.phone,
@@ -68,9 +80,9 @@ export const createClientService = (authenticatedFetch: typeof fetchWithErrorHan
   },
 
   // Get client appointment history
-  async getClientAppointments(clientId: string): Promise<any[]> {
-    return await authenticatedFetch(`/clients/${clientId}/appointments`);
-  },
+  // async getClientAppointments(clientId: string): Promise<any[]> {
+  //   return await authenticatedFetch(`/clients/${clientId}/appointments`);
+  // },
 });
 
 // Backward compatibility - export default service without auth for now
