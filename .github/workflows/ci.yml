@@ -51,3 +51,9 @@ jobs:
         
       - name: build forntend
         run: npm run build
+      
+      - name: install Playwright
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test tests/home.spec.ts

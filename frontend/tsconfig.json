@@ -5,10 +5,12 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
+    "include": ["vite.config.ts", "playwright.config.ts"],
     "noImplicitAny": false,
     "noUnusedParameters": false,
     "skipLibCheck": true,
