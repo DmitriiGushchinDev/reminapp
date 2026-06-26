@@ -10,6 +10,6 @@ test('login page has login button', async ({page})=>{
 
     await page.getByRole("button", {name: /sign in/i}).click()
 
-    await expect(page).toHaveTitle(/Sign in to My Application/i)
+    await expect(page.getByRole('heading',{name:/Sign in to My Application/i})).toBeVisible()
 }
 )
