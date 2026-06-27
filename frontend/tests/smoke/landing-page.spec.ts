@@ -1,15 +1,20 @@
-import {test, expect} from "@playwright/test";
+import {test} from "@playwright/test";
+import {LandingPage} from "../../pages/LandingPage.ts"
 
-test('login page has login button', async ({page})=>{
+test('landing page loads', async ({page})=>{
     
-    await page.goto('/')
+    const landingPage = new LandingPage(page)
+    await landingPage.open()
+    await landingPage.expectLoaded()
 
-    await expect(page).toHaveTitle(/appointmentpro/i)
+}
+);
 
-    await expect(page.getByRole("button", {name: /sign in/i})).toBeVisible()
-
-    await page.getByRole("button", {name: /sign in/i}).click()
-
-    await expect(page.getByRole('heading',{name:/Sign in to My Application/i})).toBeVisible()
+test('User can open the sign in dialog', async ({page})=>{
+    const landingPage = new LandingPage(page);
+    await landingPage.open();
+    await landingPage.expectLoaded();
+    await landingPage.clickSignIn()
+    await landingPage.expectSignInDialogOpen()
 }
 )
