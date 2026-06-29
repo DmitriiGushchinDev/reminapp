@@ -1,10 +1,14 @@
-import {type Page,expect} from "@playwright/test";
+import {type Page,expect, type Locator} from "@playwright/test";
 
 export class LandingPage{
     url = 'http://localhost:8080';
+    signInButton: Locator;
     page : Page;
+
+
     constructor(page:Page){
-        this.page = page
+        this.page = page;
+        this.signInButton = this.page.getByRole('button',{name:/sign in/i})
     };
     async open(){
        await this.page.goto(this.url)
@@ -12,11 +16,11 @@ export class LandingPage{
 
     async expectLoaded(){
         await expect(this.page).toHaveTitle(/appointmentpro/i)
-        await expect(this.page.getByRole('button',{name:/sign in/i})).toBeVisible()
+        await expect(this.signInButton).toBeVisible()
     };
 
     async clickSignIn(){
-        await this.page.getByRole('button',{name:/sign in/i}).click()
+        await this.signInButton.click()
     }
 
     async expectSignInDialogOpen(){
